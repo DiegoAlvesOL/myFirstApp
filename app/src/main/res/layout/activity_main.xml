@@ -14,6 +14,13 @@
         android:layout_height="wrap_content"
         android:hint="Digite seu nome"/>
 
+    <EditText
+        android:id="@+id/ediAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Informe sua idade"/>
+
     <Button
         android:id="@+id/btnAction"
         android:layout_width="wrap_content"
