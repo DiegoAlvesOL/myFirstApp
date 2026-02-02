@@ -1,5 +1,6 @@
 package com.example.myfirstapp
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -24,41 +25,42 @@ class MainActivity : AppCompatActivity() {
         val txtResult = findViewById<TextView>(R.id.txtResult)
 
         btnAction.setOnClickListener {
+            val name = ediName.text.toString().trim()
+            val age = ediAge.text.toString().trim()
 
-         val name = ediName.text.toString()
-         val age = ediAge.text.toString()
-         if (name.isNotEmpty()){
-             if(age.isNotEmpty()){
-                 val message = "Olá, $name! Bem-vindo ao meu primeiro App. Sua idade é: $age"
+            when {
+                // caso usuário não colocou nada
+                name.isEmpty() && age.isEmpty()->{
+                    startActivity(
+                        Intent(this, EmptyFieldsActivity::class.java)
+                    )
+                }
 
-                 val spannable = android.text.SpannableString(message)
-                 val start = message.indexOf(name)
-                 val end = start + name.length
+                // usuário colocou nome mas não a idade
+                name.isNotEmpty() && age.isEmpty()->{
+                    startActivity(
+                        Intent(this, MissingAgeActivity::class.java)
+                            .putExtra("NAME", name)
+                    )
+                }
 
-                 spannable.setSpan(
-                     android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
-                     start,
-                     end,
-                     android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                 )
-                 spannable.setSpan(
-                     android.text.style.ForegroundColorSpan(android.graphics.Color.parseColor("#1976D2")),
-                     start,
-                     end,
-                     android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                 )
+                // usuário colocou a idade mas não o nome
+                name.isEmpty() && age.isNotEmpty()->{
+                    startActivity(
+                        Intent(this, MissingNameActivity::class.java)
+                            .putExtra("AGE", age)
+                    )
+                }
 
-                 txtResult.text=spannable
-                 mainLayout.setBackgroundColor(Color.parseColor("#E3F2FD"))
 
-             }else{
-                 txtResult.text = "Você precisa digitar sua ideade"
-                 mainLayout.setBackgroundColor(Color.parseColor("#f2ddf0"))
-             }
-         }else{
-             txtResult.text = "Você precisa digitar um nome primeiro"
-             mainLayout.setBackgroundColor(Color.parseColor("#FFCDD2"))
-         }
+                else ->{
+                    startActivity(
+                        Intent(this, SuccessActivity::class.java)
+                            .putExtra("NAME", name)
+                            .putExtra("AGE", age)
+                    )
+                }
+            }
         }
     }
 }
