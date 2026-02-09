@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#E8F5E9">
+    android:background="#E8F5E9"
+    >
 
     <TextView
         android:id="@+id/txtMessage"
@@ -15,4 +16,12 @@
         android:textStyle="bold"
         android:textColor="#2E7D32"
         android:text="Bem-vindo"/>
+
+    <Button
+        android:id="@+id/btnBackToHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Go Back Arthizinho"/>
+
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.myfirstapp
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,5 +12,11 @@ class MissingAgeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_missing_age)
+
+        val btnBack = findViewById<Button>(R.id.btnBackToHome)
+
+        btnBack.setOnClickListener {
+            finish()
+        }
     }
 }

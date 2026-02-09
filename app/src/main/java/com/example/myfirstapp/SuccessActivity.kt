@@ -1,6 +1,7 @@
 package com.example.myfirstapp
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,5 +20,12 @@ class SuccessActivity : AppCompatActivity() {
         val age = intent.getStringExtra("AGE")
 
         txt.text = "Olá meu nome é $name, e a minha idade é $age"
+
+        val btnBack = findViewById<Button>(R.id.btnBackToHome)
+
+        btnBack.setOnClickListener {
+            finish()
+        }
+
     }
 }
